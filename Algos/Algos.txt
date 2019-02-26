@@ -1,0 +1,5 @@
+	
+
+	1) To find the longest palindrome subsequence, we can make a reversed copy of the array and find LCS of it with the original array.
+
+	2) gcd(x,x+y)=gcd(x,y);

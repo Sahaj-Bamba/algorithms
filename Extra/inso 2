@@ -1,0 +1,84 @@
+#include<bits/stdc++.h>
+#define ll long long int 
+using namespace std;
+
+int main()
+{
+	int n,q;
+	cin>>n>>q;
+	int i;
+	ll a[n+1];
+	ll ng[n];
+	for(i=0;i<n;i++)
+	cin>>a[i];
+	
+	stack<int> s;
+	
+	for(i=n-1;i>=0;i--)
+	{
+		while(!s.empty()&&a[s.top()]<a[i])
+		s.pop();
+		
+		if(!s.empty())
+		ng[i]=s.top();
+		
+		else
+		ng[i]=-1;
+		
+		s.push(i);
+	}
+	ng[n-1]=-1;
+	
+/*	for(i=0;i<n;i++)
+	cout<<ng[i]<<" ";
+*/	
+		while(q--)
+		{
+		sci2(l,b);
+		x=(l+c)%n;
+		y=(b+c)%n;
+		if(x>y){
+			z=x;
+			x=y;
+			y=z;
+		}
+		r=1;
+		l=ng[x];
+		while(l<y){
+			r++;
+			l=ng[l];
+		}
+		pri(r+1);
+		c=r%n;
+	}
+	
+	/*
+	cout<<"\n";
+	int l,r;
+	int ans=0;
+	
+	while(q--)
+	{
+		int l,r;
+		cin>>l>>r;
+		l=(l+ans)%n;
+		r=(r+ans)%n;
+		
+		if(l>r)
+		swap(l,r);
+		
+		
+		if(r<ng[l])
+		ans=r-l;
+		else
+		ans=ng[l]-l;
+		
+		cout<<ans<<"\n";
+	}
+	*/
+}	
+	
+	
+	
+	
+	 	

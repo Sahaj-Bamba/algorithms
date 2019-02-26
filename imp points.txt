@@ -1,0 +1,13 @@
+
+
+1) In case of modulus while checking negative and adding use while instead of if.
+
+2) Recall that subsequence is a sequence that can be derived from another sequence by deleting some elements without changing the order of the remaining elements.
+
+3) To find all factors move from 1 to sqrt(n), check divisibility and you got a pair of factors.
+
+4) Let 1 ≤ i ≤ j≤n⋅n! be a pair of indices. We call the sequence (pi,pi+1,…,pj−1,pj) a subarray of p;
+
+5) A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous;
+
+6) A subarray of an -element array is an array composed from a contiguous block of the original array's elements. For example, if 1,2,3, then the subarrays are 1, 2, 3, 1,2 , 1,2,3, 2,3 and . Something like 1,3 would not be a subarray as it's not a contiguous subsection of the original array.

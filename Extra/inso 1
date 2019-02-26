@@ -1,0 +1,111 @@
+#include<bits/stdc++.h>
+#define ll long long int 
+using namespace std;
+
+int main()
+{
+	ll n,q,x,y,z,b,c,l,r;
+	cin>>n>>q;
+	int i;
+	ll a[n+1];
+	ll ng[n];
+	for(i=0;i<n;i++)
+	cin>>a[i];
+	
+	stack<int> s;
+	
+	for(i=n-1;i>=0;i--)
+	{
+		while(!s.empty()&&a[s.top()]<=a[i])
+		s.pop();
+		
+		if(!s.empty())
+		ng[i]=s.top();
+		
+		else
+		ng[i]=-1;
+		
+		s.push(i);
+	}
+	ng[n-1]=-1;
+/*	
+	for(i=0;i<n;i++)
+	cout<<ng[i]<<" ";
+*/
+
+
+		c=0;
+		while(q--)
+		{
+		cin>>l>>b;
+		
+		x=(l+c)%n;
+		y=(b+c)%n;
+		if(x>y){
+			z=x;
+			x=y;
+			y=z;
+		}
+		
+		
+		
+		}
+//		cout<<"\n"<<x<<" "<<y<<"  ";
+		
+		
+		r=0;
+		l=x;
+		while(l<y){
+			//if(a[l]==a[ng[l]]&&ng[l]!=-1)
+			//r--;
+			r++;
+			l=ng[l];
+		}
+		
+		
+		
+		/*if(l==y&&ng[l]!=a[l]){
+		cout<<r+1<<"\n";
+			c=r+1;
+		}
+		else{
+		cout<<r<<"\n";
+		c=r;
+		}*/
+		if(l==y)
+		c=r+1;
+		else
+		c=r;
+		cout<<r;
+	}
+	
+	/*
+	cout<<"\n";
+	int l,r;
+	int ans=0;
+	
+	while(q--)
+	{
+		int l,r;
+		cin>>l>>r;
+		l=(l+ans)%n;
+		r=(r+ans)%n;
+		
+		if(l>r)
+		swap(l,r);
+		
+		
+		if(r<ng[l])
+		ans=r-l;
+		else
+		ans=ng[l]-l;
+		
+		cout<<ans<<"\n";
+	}
+	*/
+}	
+	
+	
+	
+	
+	
