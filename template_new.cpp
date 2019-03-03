@@ -16,6 +16,7 @@
 #define prec(n) fixed<<setprecision(n)
 #define bit(n, i) (((n) >> (i)) & 1)
 #define bitcount(n) __builtin_popcountll(n)
+#define bin_long stoi(to_string(x), nullptr, 2);
 
 using namespace std;
 typedef long double ld;
