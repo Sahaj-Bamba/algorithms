@@ -27,26 +27,30 @@ typedef pair<ll,ll> pl;
 
 mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
+char A[10]="";
 
-int main(int argc, char const *argv[])
+void fun(ll n,ll x,ll y){
+	if(n==0){
+		return 0;
+	}
+	int i,j,k;
+	rep(i,x,9){
+		A[y]='0'+i;
+		cout<<A;
+		fun(n-1,i+1,);
+	}
+}
+
+ll main(int argc, char const *argv[])
 {
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t;
-	ll A[mx];
-	memset(A,-1,sizeof(A));
 
-	cin>>t;
-	while(t--){
-		f=0;
-		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	cin>>n;
+	while(n!=0){
+		fun(n,0,0);
 	}
 
-//	cout<<r<<"\n";
 	return 0;
 }

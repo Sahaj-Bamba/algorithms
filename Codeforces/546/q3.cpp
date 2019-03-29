@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #define fastIO ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define mod 1000000007
-#define mx 1000005
+#define mx 1010
 #define INF LLONG_MAX
 
 #define mem(a,val) memset(a,val,sizeof(a))
@@ -33,20 +33,34 @@ int main(int argc, char const *argv[])
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t;
-	ll A[mx];
-	memset(A,-1,sizeof(A));
-
-	cin>>t;
-	while(t--){
-		f=0;
-		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	std::vector<ll> A[mx];
+	std::vector<ll> B[mx];
+	cin>>n>>m;
+	rep(i,0,n){
+		rep(j,0,n){
+			cin>>a;
+			A[i+j].pb(a);
+		}
 	}
-
-//	cout<<r<<"\n";
+	rep(i,0,n){
+		rep(j,0,n){
+			cin>>a;
+			B[i+j].pb(a);
+		}
+	}
+	sort(A.begin(), A.end());
+	sort(B.begin(), B.end());
+	f=0;
+	rep(i,0,n+m-2){
+		rep(j,0,A[i].size()){
+			if(A[i][j]!=B[i][j]){
+	//			f=1;
+	//			break;
+				cout<<"NO";
+				return 0;
+			}
+		}
+	}
+	cout<<"YES";
 	return 0;
 }

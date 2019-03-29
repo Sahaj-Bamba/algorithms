@@ -41,12 +41,15 @@ int main(int argc, char const *argv[])
 		f=0;
 		r=0;
 		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+		cin>>A[0];
+		r=A[0];
+		rep(i,1,n){
+			cin>>a;
+			r=__gcd(a,r);
+		}	
+		cout<<r<<"\n";
 	}
 
-//	cout<<r<<"\n";
+
 	return 0;
 }

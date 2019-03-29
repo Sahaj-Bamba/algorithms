@@ -27,11 +27,25 @@ typedef pair<ll,ll> pl;
 
 mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
+ll d, x, y;
+void extendedEuclid(ll A, ll B) {
+    if(B == 0) {
+        d = A;
+        x = 1;
+        y = 0;
+    }
+    else {
+        extendedEuclid(B, A%B);
+        ll temp = x;
+        x = y;
+        y = temp - (A/B)*y;
+    }
+}
 
 int main(int argc, char const *argv[])
 {
 	fastIO
-	ll a,b,c,i,j,k,f,r,x,y,z;
+	ll a,b,c,i,j,k,f,r,z;
 	ll n,m,p,q,t;
 	ll A[mx];
 	memset(A,-1,sizeof(A));
@@ -40,13 +54,22 @@ int main(int argc, char const *argv[])
 	while(t--){
 		f=0;
 		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+		cin>>n>>m>>k;
+		if(n<m){
+			cout<<"-1";
+			continue;
+		}
+		extendedEuclid(k,m);
+		if(n%d!=0){
+			cout<<"-1\n";
+		}else{
+			a=n/d;
+			x*=a;
+			y*=b;
+			
+		}
 	}
 
-//	cout<<r<<"\n";
+	//cout<<r<<"\n";
 	return 0;
 }

@@ -31,8 +31,8 @@ mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 int main(int argc, char const *argv[])
 {
 	fastIO
-	ll a,b,c,i,j,k,f,r,x,y,z;
-	ll n,m,p,q,t;
+	double a,b,c,r,x,y,z,l,ans;
+	ll n,m,p,q,t,i,j,k,f;
 	ll A[mx];
 	memset(A,-1,sizeof(A));
 
@@ -40,13 +40,34 @@ int main(int argc, char const *argv[])
 	while(t--){
 		f=0;
 		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+		cin>>a>>b>>c;
+		l=0.0;
+		r=min(a,b);
+		if(c/a+c/b>1.0)
+			f=1;
+		else{
+			f=0;
+		}
+		while(r-l>0.00005){
+			ans=(l+r)/2;
+			z=1/h;
+			z-=(1/sqrt(pow(b,2)-pow(ans,2)))
+			z-=(1/sqrt(pow(a,2)-pow(ans,2)))
+			if(f==1){
+				z*=-1;
+			}
+			// z=sqrt(((pow(a,2)*(pow(a,2)+pow(ans,2))/pow(h,2))-pow(h,2)));
+			// z+=sqrt(((pow(b,2)*(pow(b,2)+pow(ans,2))/pow(h,2))-pow(h,2)));
+			// z-=ans;
+			if(z>0){
+				l=ans;
+			}else{
+				r=ans;
+			}
+		}
+		cout<<ans<<"\n";
 	}
 
-//	cout<<r<<"\n";
+
 	return 0;
 }

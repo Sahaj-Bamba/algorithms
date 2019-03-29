@@ -33,20 +33,21 @@ int main(int argc, char const *argv[])
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t;
-	ll A[mx];
-	memset(A,-1,sizeof(A));
-
-	cin>>t;
-	while(t--){
-		f=0;
-		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	bitset<2010> bit[2010];
+	cin>>n;
+	rep(i,0,n){
+		rep(j,0,n){
+			cin>>a;
+			bit[i][j]=a;
+		}
 	}
-
-//	cout<<r<<"\n";
+	r=0;
+	rep(i,0,n){
+		rep(j,i+1,n){
+			x=(bit[i]&bit[j]).count();
+			r+=(x*(x-1))/2;
+		}
+	}
+	cout<<r/2;
 	return 0;
 }

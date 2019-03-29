@@ -27,26 +27,62 @@ typedef pair<ll,ll> pl;
 
 mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
-
 int main(int argc, char const *argv[])
 {
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t;
 	ll A[mx];
+	ll B[mx];
 	memset(A,-1,sizeof(A));
+	memset(B,0,sizeof(B));
+	string st[mx];
 
-	cin>>t;
-	while(t--){
-		f=0;
-		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	cin>>n;
+	rep(i,0,n){
+		cin>>A[i];
+	}
+	rep(i,0,n){
+		cin>>st[i];
 	}
 
-//	cout<<r<<"\n";
+	rep(i,1,n){
+		if ((str[i]<str[i-1]))
+		{
+			reverse(str[i].begin(),str[i].end());
+			if (str[i]>str[i-1])
+			{
+				B[i]=1;
+				B[i+1]=-1;
+				continue;
+			}
+			reverse(str[i].begin(),str[i].end());
+			B[i]+=1;
+			B[0]-=1;
+			invrep(j,i+1,0){
+				reverse(str[j].begin(),str[j].end());
+				if (str[j]<=str[j+1])
+				{
+					continue;
+				}
+				else{
+					cout<<-1;
+					return 0;
+				}
+			}
+		}
+	}
+	x=0;
+	r=0;
+	rep(i,0,n+2)
+	{
+		x+=B[i];
+		if(x%2==0){
+			continue;
+		}else{
+			r+=C[i];
+		}
+	}
+	cout<<r<<"\n";
 	return 0;
 }

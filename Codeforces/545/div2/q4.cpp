@@ -36,17 +36,17 @@ int main(int argc, char const *argv[])
 	ll A[mx];
 	memset(A,-1,sizeof(A));
 
-	cin>>t;
-	while(t--){
-		f=0;
-		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
+	// cin>>t;
+	// while(t--){
+	// 	f=0;
+	// 	r=0;
+	// 	cin>>n;
+	// 	rep(i,0,n)	cin>>A[i];
+	// 	sort(A,A+n);
 	
-		cout<<r<<"\n";	
-	}
+	//	cout<<r<<"\n";	
+	// }
 
-//	cout<<r<<"\n";
+	cout<<r<<"\n";
 	return 0;
 }

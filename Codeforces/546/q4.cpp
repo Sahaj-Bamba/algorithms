@@ -27,26 +27,59 @@ typedef pair<ll,ll> pl;
 
 mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
+	std::vector<ll> V[mx];
 
+	ll bs(ll a,ll i){
+		ll r,l,m;
+		l=0;
+		r=V[i].size()-1;
+		while(l<=r){
+			m=(l+r)/2;
+			if(V[i][m]==a){
+				return 1;
+			}
+			if(V[i][m]>a){
+				r=m-1;
+			}else{
+				l=m+1;
+			}
+		}
+		return 0;
+	} 
 int main(int argc, char const *argv[])
 {
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t;
 	ll A[mx];
-	memset(A,-1,sizeof(A));
-
-	cin>>t;
-	while(t--){
-		f=0;
-		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	cin>>n>>m;
+	x=n;
+	rep(i,0,n){
+		cin>>A[i];
 	}
-
-//	cout<<r<<"\n";
+	rep(i,0,m){
+		cin>>a>>b;
+		V[b].pb(a);
+	}
+	rep(i,0,n+1){
+		sort(V[i].begin(), V[i].end());
+	}
+	f=1;
+	while(f){
+		f=0;
+		invrep(i,n,1){
+			if (bs(A[i-1],A[i]))
+			{
+				swap(A[i-1],A[i]);
+				if(i==n-1){
+					n--;
+					continue;
+				}
+				f=1;
+				break;
+			}
+		}
+	}
+	cout<<x-n;
 	return 0;
 }

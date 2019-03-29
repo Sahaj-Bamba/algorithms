@@ -40,10 +40,14 @@ int main(int argc, char const *argv[])
 	while(t--){
 		f=0;
 		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
+		cin>>a>>b;
+		if(a>b){
+			c=a;
+			a=b;
+			b=c;
+		}
+		
+
 		cout<<r<<"\n";	
 	}
 

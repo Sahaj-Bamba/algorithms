@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #define fastIO ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define mod 1000000007
-#define mx 1000005
+#define mx 5010
 #define INF LLONG_MAX
 
 #define mem(a,val) memset(a,val,sizeof(a))
@@ -31,22 +31,36 @@ mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 int main(int argc, char const *argv[])
 {
 	fastIO
-	ll a,b,c,i,j,k,f,r,x,y,z;
+	ll a,b,c,none,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t;
 	ll A[mx];
-	memset(A,-1,sizeof(A));
-
-	cin>>t;
-	while(t--){
-		f=0;
-		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	char ch;
+	ll C[mx];
+	cin>>n;
+	rep(i,0,n){
+		cin>>ch;
+		C[i]=ch-'0';
 	}
-
-//	cout<<r<<"\n";
+	rep(i,0,n){
+		cin>>ch;
+		A[i]=ch-'0';
+	}
+	a=b=c=none=0;
+	rep(i,0,n){
+		if(A[i]==C[i]){
+			if(A[i]==0){
+				none++;
+			}else{
+				b++;
+			}
+		}else{
+			if(A[i]==1){
+				a++;
+			}else{
+				c++;
+			}
+		}
+	}
+	
 	return 0;
 }

@@ -32,21 +32,47 @@ int main(int argc, char const *argv[])
 {
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
-	ll n,m,p,q,t;
+	ll res2,res1,f1,f2,res,n,m,p,q,t;
+	double X,Y,Z;
 	ll A[mx];
 	memset(A,-1,sizeof(A));
-
-	cin>>t;
-	while(t--){
-		f=0;
-		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	cin>>x>>y;
+	cin>>Z;
+	a=x;
+	b=y;
+	X=Z;
+	f1=0;
+	while(a&&b){
+		a=floor(X*a);
+		b-=a;
+		if(b<0){
+			f1=1;
+			break;
+		}
+	}
+	res1=max(a,b);
+	a=y;
+	b=x;
+	X=(1-Z);
+	f2=0;
+	while(a&&b){
+		a=floor(X*a);
+		b-=a;
+		if(b<0){
+			f2=1;
+			break;
+		}
+	}
+	res2=max(a,b);
+	if(f1==0){
+		r=res2;
+	}else if(f2==0){
+		r=res1;
+	}else{
+		r=min(res2,res1);
 	}
 
-//	cout<<r<<"\n";
+	cout<<r<<"\n";
+
 	return 0;
 }

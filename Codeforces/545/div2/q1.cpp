@@ -36,17 +36,71 @@ int main(int argc, char const *argv[])
 	ll A[mx];
 	memset(A,-1,sizeof(A));
 
-	cin>>t;
-	while(t--){
-		f=0;
-		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
+	// cin>>t;
+	// while(t--){
+	// 	f=0;
+	// 	r=0;
+	// 	cin>>n;
+	// 	rep(i,0,n)	cin>>A[i];
+	// 	sort(A,A+n);
 	
-		cout<<r<<"\n";	
-	}
+	//	cout<<r<<"\n";	
+	// }
 
-//	cout<<r<<"\n";
+
+	cin>>n;
+	a=0;
+	b=0;
+	r=0;
+	i=0;
+	cin>>A[i];
+	if(A[i]==1){
+		a++;
+		x=1;
+	}else{
+		b++;
+		x=0;
+	}
+	f=0;
+	rep(i,1,n){
+		cin>>A[i];
+		if(A[i]==A[i-1]){
+			if(A[i]==1){
+				a++;
+			}else{
+				b++;
+			}		
+		}else{
+			f++;
+			r=max(min(a,b),r);
+			if(f%2==x){
+				b=0;	
+			}else{
+				a=0;
+			}
+			// a=0;
+			// b=0;
+			if(A[i]==1){
+				a++;
+			}else{
+				b++;
+			}
+		}
+	}
+			f++;
+			r=max(min(a,b),r);
+			if(f%2==x){
+				b=0;	
+			}else{
+				a=0;
+			}
+			// a=0;
+			// b=0;
+			if(A[i]==1){
+				a++;
+			}else{
+				b++;
+			}
+	cout<<r*2<<"\n";
 	return 0;
 }
