@@ -27,6 +27,7 @@ typedef pair<ll,ll> pl;
 
 mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
+ll N;
 
 int main(int argc, char const *argv[])
 {
@@ -51,6 +52,5 @@ int main(int argc, char const *argv[])
 		cout<<r<<"\n";	
 	}
 
-//	cout<<r<<"\n";
 	return 0;
 }
