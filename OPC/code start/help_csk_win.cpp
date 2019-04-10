@@ -58,7 +58,12 @@ ll fun(ll ind,ll flag,ll sum){
 
 int main(int argc, char const *argv[])
 {
+	#ifndef ONLINE_JUDGE
+    freopen("../../input","r",stdin);
+    freopen("../../output","w",stdout);
+    #endif
 	fastIO
+	cout<<"Hi";
 	ll a,b,c,i,j,f,r,x,y,z;
 	ll m,p,q,t;
 	mem(Dp,-1);
