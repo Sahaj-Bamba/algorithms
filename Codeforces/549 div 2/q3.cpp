@@ -27,29 +27,44 @@ typedef pair<ll,ll> pl;
 
 mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
-
+std::vector<pl> V[mx];
+ll A[mx]={0};
 int main(int argc, char const *argv[])
 {
-	#ifndef ONLINE_JUDGE
-    freopen("../../input","r",stdin);
-    freopen("../../output","w",stdout);
-    #endif
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t;
-	ll A[mx];
-	memset(A,-1,sizeof(A));
-
-	cin>>t;
-	while(t--){
-		f=0;
-		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
 	
-		cout<<r<<"\n";	
+	cin>>n;
+	rep(i,0,n){
+		cin>>a>>b;
+		V[a].pb(mp(i+1,b));
+		A[i+1]=b;
 	}
+	rep(i,0,n){
+		if(A[i+1]==1){
+			f=0;
+			for(auto lop : V[i+1]){
+				if(lop.s!=1){
+					f=1;
+					break;
+				}
+			}
+			if(f==0){
+				cout<<i<<" ";
+			}
+		}
+	}
+	// cin>>t;
+	// while(t--){
+	// 	f=0;
+	// 	r=0;
+	// 	cin>>n;
+	// 	rep(i,0,n)	cin>>A[i];
+	// 	sort(A,A+n);
+	
+	// 	cout<<r<<"\n";	
+	// }
 
 //	cout<<r<<"\n";
 	return 0;

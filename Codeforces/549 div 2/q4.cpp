@@ -30,10 +30,6 @@ mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
 int main(int argc, char const *argv[])
 {
-	#ifndef ONLINE_JUDGE
-    freopen("../../input","r",stdin);
-    freopen("../../output","w",stdout);
-    #endif
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t;

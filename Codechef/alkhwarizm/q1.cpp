@@ -30,26 +30,29 @@ mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
 int main(int argc, char const *argv[])
 {
-	#ifndef ONLINE_JUDGE
-    freopen("../../input","r",stdin);
-    freopen("../../output","w",stdout);
-    #endif
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t;
 	ll A[mx];
+	ll B[mx];
 	memset(A,-1,sizeof(A));
+	memset(B,0,sizeof(B));
 
-	cin>>t;
-	while(t--){
 		f=0;
 		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
-	}
+		cin>>n>>t;
+		rep(i,1,n+1)	cin>>A[i];
+		rep(i,1,n+1)	cin>>B[i];
+		
+		rep(i,1,n+1)	B[i]*=A[i];
+		rep(i,1,n+1)	B[i]+=B[i-1];
+
+		while(t--){
+			cin>>a>>b;
+			cout<<B[a-1]-B[b]<<"\n";	
+		}
+
+		
 
 //	cout<<r<<"\n";
 	return 0;

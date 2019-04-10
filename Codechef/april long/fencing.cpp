@@ -26,7 +26,7 @@ typedef long long int ll;
 typedef pair<ll,ll> pl;
 
 mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
-
+#define contains count
 
 int main(int argc, char const *argv[])
 {
@@ -37,17 +37,32 @@ int main(int argc, char const *argv[])
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t;
-	ll A[mx];
-	memset(A,-1,sizeof(A));
-
 	cin>>t;
 	while(t--){
-		f=0;
-		r=0;
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
+		cin>>n>>m>>k;
+		r=k*4;
+		while(k--){
+			set<ll> A;
+			cin>>a>>b;
+			x=a*1000000000+b;
+			A.insert(x);
+			if (A.contains(x+1))
+			{
+				r-=2;
+			}
+			if (A.contains(x-1))
+			{
+				r-=2;
+			}			
+			if (A.contains(x+1000000000))
+			{
+				r-=2;
+			}			
+			if (A.contains(x-1000000000))
+			{
+				r-=2;
+			}
+		}
 		cout<<r<<"\n";	
 	}
 

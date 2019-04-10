@@ -41,16 +41,60 @@ int main(int argc, char const *argv[])
 		f=0;
 		r=0;
 		cin>>a>>b;
-		if(a>b){
+		if(a==0&&b==0){
+			cout<<"0\n";
+			continue;
+		}
+		if(a==0||b==0){
+			cout<<"-1\n";
+			continue;
+		}
+		if (a>b)
+		{
 			c=a;
 			a=b;
 			b=c;
 		}
-		
-
+		r=0;
+		while(a<=b){
+			while(a<b){
+				r++;
+				a*=2;
+			}
+			if(a==b){
+				r+=a;
+				break;
+			}
+			a/=2;
+			b--;
+			a--;
+			//r++;
+		}
+		// if(a>b){
+		// 	c=a;
+		// 	a=b;
+		// 	b=c;
+		// }
+		// x=b-a;
+		// if(x<=a&&x!=0){
+		// 	r=1;
+		// }else{
+		// 	while(a<=x){
+		// 		x-=a;
+		// 		a*=2;
+		// 		r++;
+		// 	}
+		// 	if(a<b){
+		// 		r++;
+		// 	}else{
+		// 		c=a;
+		// 		a=b;
+		// 		b=c;
+		// 	}
+		// }
+		// r+=b;
 		cout<<r<<"\n";	
 	}
 
-//	cout<<r<<"\n";
 	return 0;
 }
