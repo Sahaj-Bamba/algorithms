@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 #define fastIO ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define mod 1000000007
-//#define mx 1000005
 #define INF LLONG_MAX
+
+#define mx 100005
 
 #define mem(a,val) memset(a,val,sizeof(a))
 #define rep(i,j,n) for(i=j;i<n;i++)
@@ -31,38 +32,65 @@ ll N;
 
 int main(int argc, char const *argv[])
 {
-	#ifndef ONLINE_JUDGE
-		freopen("../../input","r",stdin);
-		freopen("../../output","w",stdout);
-    	#define mx 100005
-    #else
-		#define mx 1000005
-    #endif
-	fastIO	
+ 	fastIO
+	// #ifndef ONLINE_JUDGE
+ //    freopen("../../input","r",stdin);
+ //    freopen("../../output","w",stdout);
+	// #define mx 100005
+ //    #else
+	// #define mx 1000005
+ //    #endif
 	ll a,b,c,i,j,k,f,r,x,y,z;
-	ll n,m,p,q,t;
-	ll A[mx];
-	memset(A,-1,sizeof(A));
+	ll n,m,p,q,t,l;
+	char X;
+	char A[mx];
+	//memset(A,-1,sizeof(A));
+	a=b=c=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
+	cin>>t;
+	
+	rep(j,0,t){
+		
+		cin>>A;
+		n = strlen(A);
+		r=0;
+		rep(i,0,n){
+			if (A[i]=='B')
+			{
+				r++;
+			}
+		}
+
+		a=2+r;
+		b=1+2*r;
+
+		if (n>=a)
+		{
+			X='Y';
+		}else{
+			X='N';
+		}
+		if (r==1)
+		{
+			if (n==3)
+			{
+				X='Y';
+			}else{
+				X='N';
+			}
+		}
+		if (r==0)
+		{
+			if (n==1)
+			{
+				X='Y';
+			}else{
+				X='N';
+			}
+		}
 
 
-	cin>>x>>y>>z;
-
-	r=(x+y)/z;
-	p=x/z;
-	q=y/z;
-	a=x-p*z;
-	b=y-q*z;
-	c=0;
-	r=p+q;
-	if (a+b>=z)
-	{
-		c=min(z-a,z-b);
-		r++;
-	}else{
-		c=0;
+		cout<<"Case #"<<j+1<<": "<<X<<"\n";	
 	}
-
-	cout<<r<<" "<<c;
 
 	return 0;
 }
