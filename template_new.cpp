@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 #define fastIO ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define mod 1000000007
-#define mx 1000005
 #define INF LLONG_MAX
 
 #define mem(a,val) memset(a,val,sizeof(a))
@@ -32,16 +31,20 @@ ll N;
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
-    freopen("../../input","r",stdin);
-    freopen("../../output","w",stdout);
+		freopen("../../input","r",stdin);
+		freopen("../../output","w",stdout);
+    	#define mx 100005
+    #else
+		#define mx 1000005
     #endif
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
-	ll n,m,p,q,t;
+	ll n,m,p,q,t,l;
 	ll A[mx];
 	memset(A,-1,sizeof(A));
-
+	a=b=c=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	cin>>t;
+	
 	while(t--){
 		f=0;
 		r=0;
