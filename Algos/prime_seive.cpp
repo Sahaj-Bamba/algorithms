@@ -1,7 +1,7 @@
 
 #define prime_max 1000006
 ll Prime[prime_max]={0};
-
+std::vector<ll> primes;
 void prime_seive(int n=prime_max){
 	Prime[0]=Prime[1]=1;
 	for (int i = 2; i < n; ++i)
@@ -10,11 +10,19 @@ void prime_seive(int n=prime_max){
 		{
 			for (int j = i; j < n; j+=i)
 			{
-			    if(Prime[j]==0)
+			    if(Prime[j]==0){
 				    Prime[j]=i;
+
+                }
 			}
 		}
 	}
+    rep(i,2,n){
+        if (Prime[i]==i)
+        {
+            primes.pb(i);
+        }
+    }
 }
 
 
