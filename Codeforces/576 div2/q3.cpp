@@ -39,35 +39,80 @@ int main(int argc, char const *argv[])
     #endif
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
-	ll n,d,m,p,q,t,l;
+	ll n,m,p,q,t,l;
 	ll A[mx];
+	ll B[mx];
+	map<ll,ll> M;
 	memset(A,-1,sizeof(A));
-	a=b=c=i=d=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
-	cin>>A[0]>>A[1]>>A[2]>>d;
+	a=b=c=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 
-	sort(A,A+3);
+	set<ll> X;
 
-	z=A[0]+2*d;
+	cin>>n>>x;
+	
+		f=0;
+		r=0;
 
-	if (A[2]>z)
+		rep(i,0,n){
+			cin>>A[i];
+			X.insert(A[i]);
+			if (M.find(A[i])==M.end())
+			{
+				M.insert(mp(A[i],1));
+			}else{
+				M[A[i]]++;
+			}
+		}
+
+	y=X.size();
+
+	x*=8;
+
+	x/=n;
+	if (x>30)
 	{
-		r=min(abs(A[1]-(A[0]+d)),abs(A[1]-(A[2]-d)));
-	}else{
-		r=(z-A[2])+abs(A[1]-(A[0]+d));
+		cout<<0;
+		return 0;
 	}
 
+	x=pow(2,x);
+	//cout<<x<<" ";
+	if (y<=x)
+	{
+		cout<<0;
+		return 0;
+	}
+
+	z=y-x;
+	
+	r=0;
+	p=0;
 	f=0;
-	if (A[0]>A[1]-d)
-	{
-		f+=abs(A[0]-(A[1]-d));
+	for(auto H : M){
+		B[f++]=H.second;	
+	}
+	
+	for(auto H : M){
+		r+=H.second;
+		p++;
+		if (p==z)
+		{
+			break;
+		}
+	}
+	q=r;
+	// cout<<B[0]<<" "<<B[1]<<" "<<B[2]<<" "<<B[3]<<" \n";
+	// cout<<q<<" "<<z<<" ";
+	
+	for(i=0;i<z;i++){
+		r-=B[z-(i+1)];
+		r+=B[f-(i+1)];
+		q=min(q,r);
+	//	cout<<q<<" "<<r<<"\n";
+		
 	}
 
-	if (A[2]<A[1]+d)
-	{
-		f+=abs(A[2]-(A[1]+d));
-	}
-
-	cout<<min(r,f);
+		cout<<q<<"\n";	
 
 	return 0;
 }

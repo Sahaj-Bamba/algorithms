@@ -37,37 +37,39 @@ int main(int argc, char const *argv[])
     #else
 		#define mx 1000005
     #endif
+
 	fastIO
 	ll a,b,c,i,j,k,f,r,x,y,z;
-	ll n,d,m,p,q,t,l;
+	ll n,m,p,q,t,l,g;
 	ll A[mx];
-	memset(A,-1,sizeof(A));
-	a=b=c=i=d=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
-	cin>>A[0]>>A[1]>>A[2]>>d;
+	char ch;
+	a=b=c=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
+	cin>>t;
+	
+	for(k=0;k<t;k++){
+		f=0;
+		r=0;
 
-	sort(A,A+3);
+		memset(A,0,sizeof(A));
+		cin>>n>>g>>m;
 
-	z=A[0]+2*d;
 
-	if (A[2]>z)
-	{
-		r=min(abs(A[1]-(A[0]+d)),abs(A[1]-(A[2]-d)));
-	}else{
-		r=(z-A[2])+abs(A[1]-(A[0]+d));
+
+		rep(i,0,g){
+			cin>>a>>ch;
+			if (ch=='C')
+			{
+				A[(((a-1)+m)%n)+1]++;
+			}else{
+				A[(n-((n-a)+m)%n)+1]++;
+			}
+		}	
+	
+		rep(i,1,n+1){
+			cout<<A[i]<<" ";
+		}
+		cout<<"\n";
 	}
-
-	f=0;
-	if (A[0]>A[1]-d)
-	{
-		f+=abs(A[0]-(A[1]-d));
-	}
-
-	if (A[2]<A[1]+d)
-	{
-		f+=abs(A[2]-(A[1]+d));
-	}
-
-	cout<<min(r,f);
 
 	return 0;
 }

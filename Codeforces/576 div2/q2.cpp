@@ -37,37 +37,17 @@ int main(int argc, char const *argv[])
     #else
 		#define mx 1000005
     #endif
-	fastIO
-	ll a,b,c,i,j,k,f,r,x,y,z;
-	ll n,d,m,p,q,t,l;
+
+
+	
+	long double a,b,c,i,j,k,f,r,x,y,z;
+	ll n,m,p,q,t,l;
 	ll A[mx];
-	memset(A,-1,sizeof(A));
-	a=b=c=i=d=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
-	cin>>A[0]>>A[1]>>A[2]>>d;
+	
+	cin>>a>>b;
 
-	sort(A,A+3);
-
-	z=A[0]+2*d;
-
-	if (A[2]>z)
-	{
-		r=min(abs(A[1]-(A[0]+d)),abs(A[1]-(A[2]-d)));
-	}else{
-		r=(z-A[2])+abs(A[1]-(A[0]+d));
-	}
-
-	f=0;
-	if (A[0]>A[1]-d)
-	{
-		f+=abs(A[0]-(A[1]-d));
-	}
-
-	if (A[2]<A[1]+d)
-	{
-		f+=abs(A[2]-(A[1]+d));
-	}
-
-	cout<<min(r,f);
+	c = (b*b)/(2.0*a) - (b/2);
+	cout<<prec(15)<<c;
 
 	return 0;
 }
