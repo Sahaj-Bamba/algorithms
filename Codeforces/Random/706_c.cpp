@@ -27,42 +27,83 @@ typedef pair<ll,ll> pl;
 ld pi=2.0*acos(0.0);
 
 mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
+		#define mx 10005
 
 ll N;
+ll A[mx];
+string S[mx];
+ll Dp[mx][2];
+
+ll fun(ll idx, ll re){
+	if(idx<0){
+		if (S[idx+1]>S[idx+2])
+		{
+			return 1e15;
+		}else{
+			return 0;
+		}
+	}
+
+	if (Dp[idx][re] != -1)
+	{
+		return Dp[idx][re];
+	}
+
+	if (S[idx]>S[idx+1])
+	{
+		return 1e15;
+	}
+
+	ll a,b;
+
+	a = fun(idx-1,0);
+
+	reverse(S[idx].begin(), S[idx].end());
+
+	b = fun(idx-1,1)+ A[idx];
+
+	reverse(S[idx].begin(), S[idx].end());
+
+	return Dp[idx][re] = min(a,b);
+
+}
 
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
 		freopen("../../input","r",stdin);
 		freopen("../../output","w",stdout);
-    	#define mx 100005
     #else
-		#define mx 1000005
     #endif
 
 	fastIO
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
-	
-	memset(A,-1,sizeof(A));
-	
+	mem(Dp,-1);
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
-	
-	cin>>t;
-	
-	while(t--){
 	
 		f=0;
 		r=0;
 	
 		cin>>n;
 		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
-	}
+		rep(i,0,n)	cin>>S[i];
 
+
+	a = fun(n-2,0);
+
+	reverse(S[n-1].begin(), S[n-1].end());
+
+	b = fun(n-2,1) + A[n-1];
+
+	//cout<<a;
+
+	//cout<<b;
+
+	r = min(a,b);
+
+	cout<<r<<"\n";	
+	
 	return 0;
 }

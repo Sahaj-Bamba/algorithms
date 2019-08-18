@@ -44,25 +44,35 @@ int main(int argc, char const *argv[])
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
-	
-	memset(A,-1,sizeof(A));
-	
+	string A;
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
-	cin>>t;
-	
-	while(t--){
-	
-		f=0;
-		r=0;
-	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	cin>>A;
+	r=1;
+	for(auto X : A){
+		if (X<='9' && X>='0')
+		{
+			r*=pow(3,6 - bitcount(X-'0'));
+			r%=mod;
+		}else if (X <= 'z' && X >= 'a')
+		{
+			r*=pow(3,6 - bitcount(X-'a'+36));
+			r%=mod;
+		}else if (X <= 'Z' && X >= 'A')
+		{
+			r*=pow(3,6 - bitcount(X-'A'+10));
+			r%=mod;
+		}else if (X == '-' )
+		{
+			r*=pow(3,6 - bitcount(62));
+			r%=mod;
+		}else if (X == '_')
+		{
+			r*=pow(3,6 - bitcount(63));
+			r%=mod;
+		}
 	}
 
+	cout<<r<<"\n";
 	return 0;
 }

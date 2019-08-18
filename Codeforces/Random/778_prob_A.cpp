@@ -44,25 +44,69 @@ int main(int argc, char const *argv[])
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
-	
-	memset(A,-1,sizeof(A));
-	
+	ll left,right,mid,ans;
+	string A;
+	string B;
+	ll C[mx];
+	set<ll> Rem;
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
-	cin>>t;
-	
-	while(t--){
-	
-		f=0;
-		r=0;
-	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	cin>>A;
+	cin>>B;
+
+	n = A.size();
+	rep(i,0,n){
+		cin>>C[i];
+		C[i]--;
 	}
+	c = B.size();
+	left = 0;
+	right = n-1;
+	mid=(left+right)/2;
+	rep(i,0,mid+1){
+		Rem.insert(C[i]);
+	}
+	// cout<<mid;
+	// cout<<Rem.size();
+	//cout<<c;
+	while(left <= right){
+		f=0;
+		j=0;
+		rep(i,0,n){
+			if (Rem.count(i)==1)
+			{
+				continue;
+			}
+			if (A[i] == B[j])
+			{
+				//cout<<i<<" ";
+				j++;
+				if (j == c)
+				{
+					break;
+				}
+			}
+		}
+		if (j == c)
+		{
+			left = mid+1;
+			mid = (left+right)/2;
+			ans = Rem.size();
+			//cout<<ans<<Rem.size()<<mid<<" ";
+			rep(i,left,mid+1){
+				Rem.insert(C[i]);
+			}
+		}
+		else{
+			right = mid-1;
+			mid = (left+right)/2;
+			invrep(i,right+2,mid+1){
+				Rem.erase(C[i]);
+			}
+		}
+	}
+
+	cout<<ans<<"\n";
 
 	return 0;
 }

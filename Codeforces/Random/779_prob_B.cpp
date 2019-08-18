@@ -44,25 +44,37 @@ int main(int argc, char const *argv[])
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
+	string A;
 	
-	memset(A,-1,sizeof(A));
 	
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
+	cin>>A;
+	cin>>k;
 	
-	cin>>t;
-	
-	while(t--){
-	
-		f=0;
-		r=0;
-	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	n=A.size();
+	r=0;
+	a=0;
+	f=0;
+	invrep(i,n,0){
+		if (A[i]=='0')
+		{
+			a++;
+			if (a==k)
+			{
+				f=1;
+				break;
+			}
+		}else{
+			r++;
+		}
 	}
 
+	if (f!=1)
+	{
+		r=A.size()-1;
+	}
+
+	cout<<r<<"\n";
+	
 	return 0;
 }

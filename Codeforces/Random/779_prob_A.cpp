@@ -50,19 +50,50 @@ int main(int argc, char const *argv[])
 	
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
-	cin>>t;
-	
-	while(t--){
-	
-		f=0;
-		r=0;
-	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	cin>>n;
+	std::map<ll, ll> M1,M2;
+
+	rep(i,0,n){
+		cin>>a;
+		M1[a]++;
 	}
+	rep(i,0,n){
+		cin>>a;
+		M2[a]++;
+	}
+	f=0;
+	rep(i,0,5){
+		a=0;
+		if (M1.find(i+1) != M1.end()) 
+		{
+			a += M1[i+1];
+		}
+		if (M2.find(i+1) != M2.end()) 
+		{
+			a += M2[i+1];
+		}
+		if (a%2!=0)
+		{
+			f=1;
+			cout<<"-1";
+			return 0;
+		}
+	}
+	r=0;
+	rep(i,0,5){
+		a=0;
+		b=0;
+		if (M1.find(i+1) != M1.end()) 
+		{
+			a += M1[i+1];
+		}
+		if (M2.find(i+1) != M2.end()) 
+		{
+			b += M2[i+1];
+		}
+		r+=abs(a-b);
+	}
+	cout<<r/4;
 
 	return 0;
 }

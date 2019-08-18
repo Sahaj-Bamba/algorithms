@@ -44,25 +44,41 @@ int main(int argc, char const *argv[])
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
-	
-	memset(A,-1,sizeof(A));
-	
+	string A;
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
-	
-	cin>>t;
-	
-	while(t--){
-	
-		f=0;
-		r=0;
-	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	cin>>n;	
+	cin>>A;
+	//queue<char> Q;
+	set<char> S1,S2;
+	for(auto X : A){
+		S1.insert(X);
 	}
-
+	x=S1.size();
+	std::map<char, ll> M;
+	r=1e9;
+	rep(i,0,n){
+		M[A[i]] = i;
+		if (M.size()==x)
+		{
+			a=1e9;
+			for(auto X : M){
+				a=min(a,X.s);
+			}
+			r=min(r,i-a+1);
+		}
+	}
+	M.clear();
+	invrep(i,n,0){
+		M[A[i]] = i;
+		if (M.size()==x)
+		{
+			a=-1;
+			for(auto X : M){
+				a=max(a,X.s);
+			}
+			r=min(r,a-i+1);
+		}
+	}
+	cout<<r<<"\n";
 	return 0;
 }

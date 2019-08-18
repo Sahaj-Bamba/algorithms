@@ -30,6 +30,32 @@ mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
 ll N;
 
+ll modInverse(ll a, ll m) 
+{
+	ll m0 = m;
+	ll y = 0, x = 1;
+
+	if (m == 1) 
+		return 0; 
+
+	while (a > 1) 
+	{ 
+		ll q = a / m; 
+		ll t = m; 
+
+		m = a % m, a = t; 
+		t = y; 
+
+		y = x - q * y; 
+		x = t; 
+	}
+
+	if (x < 0) 
+		x += m0; 
+
+	return x; 
+}
+
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
@@ -44,24 +70,23 @@ int main(int argc, char const *argv[])
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
-	
-	memset(A,-1,sizeof(A));
-	
+	map<ll,char> M;
+	string A;
+
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
+	cin>>A;
+
+	cin>>a;
+	cin>>b;
+
+	n=A.size();
+	c=modInverse(b,26);
+	rep(i,0,26){
+		M[i] = ( ((((i-a+26)%26)*c)%26) + 'A');
+	}
 	
-	cin>>t;
-	
-	while(t--){
-	
-		f=0;
-		r=0;
-	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+	for(auto X : A){
+		cout<<M[X-'A'];
 	}
 
 	return 0;

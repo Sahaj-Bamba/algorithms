@@ -44,25 +44,23 @@ int main(int argc, char const *argv[])
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
 	
-	memset(A,-1,sizeof(A));
+	string A;
+	string B;
+	std::map<char,char> M1;
 	
+	rep(i,0,26){
+		M1['A'+i] = 'A'+(25-i);
+	}
+
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
-	cin>>t;
-	
-	while(t--){
-	
-		f=0;
-		r=0;
-	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
-	}
+
+	cin>>A;	
+	cin>>B;
+
+	n = 
+
 
 	return 0;
 }
