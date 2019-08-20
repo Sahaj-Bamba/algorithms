@@ -33,8 +33,8 @@ ll N;
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
-		freopen("../../input","r",stdin);
-		freopen("../../output","w",stdout);
+		// freopen("../../input","r",stdin);
+		// freopen("../../output","w",stdout);
     	#define mx 100005
     #else
 		#define mx 1000005
