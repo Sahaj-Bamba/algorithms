@@ -52,19 +52,48 @@ int main(int argc, char const *argv[])
 	
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
-	cin>>t;
-	
-	while(t--){
+	set<ll> S;
+	queue<ll> Q;
 	
 		f=0;
 		r=0;
 	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
-	}
+		cin>>n>>k;
+		// cout<<k<<"\n";
+		x=0;
+		while(n--){
+			cin>>a;
+			if (S.count(a))
+			{
+				continue;
+			}
+			// cout<<x<<" ";
+			if (x==k)
+			{
+				S.erase(Q.front());
+				Q.pop();
+				x--;
+			}
+			S.insert(a);
+			Q.push(a);
+			x++;
+		}
+		cout<<Q.size();
+		cout<<"\n";
+		std::vector<ll> V;
+		while(!(Q.empty())){
+			V.pb(Q.front());
+			Q.pop();
+		}
+		n=V.size();
+		invrep(i,n,0){
+			cout<<V[i]<<" ";
+		}
 
+		// rep(i,0,n)	cin>>A[i];
+		// sort(A,A+n);
+	
+		// cout<<r<<"\n";	
+	
 	return 0;
 }

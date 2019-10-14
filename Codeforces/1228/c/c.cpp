@@ -32,6 +32,43 @@ mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
 ll N;
 
+std::vector<ll> pfacs;
+void primefacs(ll a){
+	ll i,b=a,f=0;
+	// cout<<a;
+	// return;
+	rep(i,2,sqrt(b)+1){
+		while(a%i==0){
+			a/=i;
+			f=1;
+		}
+		if (f)
+		{
+			pfacs.pb(i);
+			f=0;
+		}
+	}
+	if (a!=1)
+	{
+		pfacs.pb(a);
+	}
+	return;
+}
+
+ll exp_mul(ll b,ll p){
+    ll ans = 1;
+    while(p>0){
+        if(p%2!=0){
+            ans*=b;
+            ans%=mod;
+        }
+        b*=b;
+        b%=mod;
+        p/=2;
+    }
+    return ans;
+}
+
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
@@ -46,25 +83,35 @@ int main(int argc, char const *argv[])
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
-	
-	memset(A,-1,sizeof(A));
 	
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
-	cin>>t;
-	
-	while(t--){
 	
 		f=0;
 		r=0;
 	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
+		cin>>a>>b;
+
+
+		primefacs(a);
+		n=pfacs.size();
+		// return 0;
+		r=1;
+		for(auto X : pfacs){
+			j=X;
+			f=0;
+			while(b/j!=0){
+				r*=(exp_mul(X,b/j))%mod;		
+				r%=mod;
+				if (j>1e18/X)
+				{
+					break;
+				}
+				j*=X;
+			}
+		}
 	
 		cout<<r<<"\n";	
-	}
-
+	
 	return 0;
 }

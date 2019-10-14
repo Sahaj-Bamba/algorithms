@@ -17,9 +17,7 @@
 #define mp make_pair
 #define f first
 #define s second
-	
-#define mx 1000005
-    
+
 using namespace std;
 
 typedef long double ld;
@@ -35,21 +33,19 @@ ll N;
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
-		// freopen("../../../input","r",stdin);
-		// freopen("../../../output","w",stdout);
-    	// #define mx 100005
+		// freopen("../../input","r",stdin);
+		// freopen("../../output","w",stdout);
+    	#define mx 100005
     #else
-		// #define mx 1000005
+		#define mx 1000005
     #endif
 
 	fastIO
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
-	
-	memset(A,-1,sizeof(A));
-	
+	string A,B;
+	set<char> X,Z;
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
 	cin>>t;
@@ -58,12 +54,25 @@ int main(int argc, char const *argv[])
 	
 		f=0;
 		r=0;
-	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+		cin>>A>>B;
+		X=Z;
+		for(auto P : A){
+			X.insert(P);
+		}
+		for(auto P : B){
+			if (X.count(P))
+			{
+				r=1;
+				break;
+			}
+		}
+		if (r)
+		{
+			cout<<"YES";
+		}else{
+			cout<<"NO";
+		}
+		cout<<"\n";	
 	}
 
 	return 0;

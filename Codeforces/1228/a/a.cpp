@@ -32,6 +32,24 @@ mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
 ll N;
 
+bool fun(ll i){
+	char A[10];
+	ll j=0,k;
+	while(i!=0){
+		A[j]=i%10;
+		j++;
+		i/=10;
+	}
+	rep(i,0,j)
+	rep(k,i+1,j){
+		if (A[i]==A[k])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
@@ -46,25 +64,27 @@ int main(int argc, char const *argv[])
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
-	
-	memset(A,-1,sizeof(A));
+
+	string A,B;
+	char C[5];
 	
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
-	cin>>t;
-	
-	while(t--){
 	
 		f=0;
-		r=0;
-	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
+		r=-1;
+
+		cin>>a>>b;
+		rep(i,a,b+1){
+			if (fun(i))
+			{
+				r=i;
+				break;
+			}
+		}
+
+
 		cout<<r<<"\n";	
-	}
 
 	return 0;
 }

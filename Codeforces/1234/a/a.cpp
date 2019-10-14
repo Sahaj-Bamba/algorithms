@@ -60,8 +60,17 @@ int main(int argc, char const *argv[])
 		r=0;
 	
 		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
+		rep(i,0,n){
+			cin>>a;
+			r+=a;
+		}
+
+		if (r%n==0)
+		{
+			r=r/n;
+		}else{
+			r=r/n + 1;
+		}
 	
 		cout<<r<<"\n";	
 	}

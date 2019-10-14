@@ -17,9 +17,7 @@
 #define mp make_pair
 #define f first
 #define s second
-	
-#define mx 1000005
-    
+
 using namespace std;
 
 typedef long double ld;
@@ -35,11 +33,11 @@ ll N;
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
-		// freopen("../../../input","r",stdin);
-		// freopen("../../../output","w",stdout);
-    	// #define mx 100005
+		// freopen("../../input","r",stdin);
+		// freopen("../../output","w",stdout);
+    	#define mx 100005
     #else
-		// #define mx 1000005
+		#define mx 1000005
     #endif
 
 	fastIO
@@ -60,9 +58,19 @@ int main(int argc, char const *argv[])
 		r=0;
 	
 		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
+		
+		r=0;
+		if (n==2)
+		{
+			cout<<2<<"\n";
+			continue;
+		}
+		if (n%2!=0)
+		{
+			n++;
+			r++;
+		}
+		
 		cout<<r<<"\n";	
 	}
 

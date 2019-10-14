@@ -35,8 +35,8 @@ ll N;
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
-		// freopen("../../../input","r",stdin);
-		// freopen("../../../output","w",stdout);
+		// freopen("../../input","r",stdin);
+		// freopen("../../output","w",stdout);
     	// #define mx 100005
     #else
 		// #define mx 1000005
@@ -59,10 +59,25 @@ int main(int argc, char const *argv[])
 		f=0;
 		r=0;
 	
-		cin>>n;
+		cin>>n>>x;
 		rep(i,0,n)	cin>>A[i];
 		sort(A,A+n);
-	
+		
+		r=0;
+		i=n-1;
+		while(i>=0){
+			if (A[i]<=r*x)
+			{
+				break;
+			}
+			r++;
+			while(i-1>=0&&A[i-1]==A[i]){
+				i--;
+			}
+			i--;
+		}
+
+
 		cout<<r<<"\n";	
 	}
 

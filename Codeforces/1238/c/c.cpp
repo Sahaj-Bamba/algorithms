@@ -59,9 +59,23 @@ int main(int argc, char const *argv[])
 		f=0;
 		r=0;
 	
-		cin>>n;
+		cin>>a>>n;
 		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
+		sort(A,A+n,greater<ll>());
+		// cout<<A[0]<<" "<<A[1]<<" ";	
+		rep(i,1,n){
+			// cout<<A[i]<<" ";
+			if (A[i]==1)
+			{
+				break;
+			}
+			if (i+1<n && A[i]-1==A[i+1])
+			{
+				i++;
+			}else{
+				r++;
+			}
+		}
 	
 		cout<<r<<"\n";	
 	}

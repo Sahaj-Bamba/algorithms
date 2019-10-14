@@ -46,25 +46,69 @@ int main(int argc, char const *argv[])
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
-	
-	memset(A,-1,sizeof(A));
+	ll A[1005][1005]={0};
+	ll B[mx];
+	ll C[mx];
+	// memset(A,-1,sizeof(A));
 	
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
-	cin>>t;
-	
-	while(t--){
 	
 		f=0;
-		r=0;
+		r=1;
 	
-		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
+		cin>>n>>m;
+		rep(i,0,n)	cin>>B[i];
+		rep(i,0,m)	cin>>C[i];
+										//	-1 fill
+										//	0 unknown
+										//	1 empty
+		rep(i,0,n){
+			rep(j,0,B[i])
+				if (A[i][j]==0)
+				{
+					A[i][j]=-1;
+				}
+			A[i][j]=1;
+		}
+		
+		rep(i,0,m){
+			rep(j,0,C[i]){
+				if (A[j][i]==0)
+				{
+					A[j][i]=-1;
+				}else if (A[j][i]==-1)
+				{
+					continue;
+				}else{
+					r=0;
+				}
+			}
+			if (A[j][i]==-1)
+			{
+				r=0;
+			}else{
+				A[j][i]=1;
+			}
+		}
+		if (r==0)
+		{
+			cout<<"0";
+			return 0;
+		}
+		rep(i,0,n){
+			rep(j,0,m){
+				if (A[i][j]==0)
+				{
+					r*=2;
+					r%=mod;
+				}
+			}
+		}
+		
+
+
 		cout<<r<<"\n";	
-	}
 
 	return 0;
 }

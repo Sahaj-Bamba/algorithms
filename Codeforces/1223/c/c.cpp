@@ -17,9 +17,7 @@
 #define mp make_pair
 #define f first
 #define s second
-	
-#define mx 1000005
-    
+
 using namespace std;
 
 typedef long double ld;
@@ -32,22 +30,52 @@ mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
 ll N;
 
+ll x,a,y,b;
+#define mx 1000005
+ll A[mx];
+ll B[mx];
+
+
+bool fun(ll xk,ll xc){
+	ll i,j,k;
+	ll p,q,r;
+	p = (a*b)/__gcd(a,b);
+	i=xk/p;
+	r=0;
+	r=(B[i]*(x+y))/100;
+	j=xk/a;
+	// j-=i;
+	r+= ((B[j]-B[i])*(x))/100;
+	k=xk/b;
+	k-=i;
+	k+=j;
+	// j-=i;
+	r+= ((B[k]-B[j])*(y))/100;
+
+	if (r<xc)
+	{
+		return false;
+	}
+	return true;
+
+}
+
+
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
 		// freopen("../../../input","r",stdin);
 		// freopen("../../../output","w",stdout);
-    	// #define mx 100005
     #else
-		// #define mx 1000005
     #endif
 
 	fastIO
 	
-	ll a,b,c,d,i,j,k,f,r,x,y,z;
+	ll c,d,i,j,k,f,r,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
 	
+	ll L,R,M;
+
 	memset(A,-1,sizeof(A));
 	
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
@@ -58,11 +86,35 @@ int main(int argc, char const *argv[])
 	
 		f=0;
 		r=0;
-	
+		mem(B,0);
 		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
+		rep(i,1,n+1)	cin>>A[i];
+		sort(A+1,A+n+1,greater<ll>());
+		rep(i,1,n+1)	B[i]=B[i-1]+A[i];
+		// rep(i,1,n+1)	cout<<" "<<B[i];
+		// cout<<"\n";
+		cin>>x>>a>>y>>b>>k;
+		// cout<<k<<"\n";
+		if (x<y)
+		{
+			swap(a,b);
+			swap(x,y);
+		}
+		L=0;
+		R=n;
+		r=-1;
+		
+		while(L<=R){
+			M=((L+R)/2);
+			if (fun(M,k))
+			{
+				R=M-1;
+				r=M;
+			}else{
+				L=M+1;
+			}
+		}
+
 		cout<<r<<"\n";	
 	}
 

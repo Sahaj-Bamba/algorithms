@@ -35,8 +35,8 @@ ll N;
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
-		// freopen("../../../input","r",stdin);
-		// freopen("../../../output","w",stdout);
+		freopen("../../../input","r",stdin);
+		freopen("../../../output","w",stdout);
     	// #define mx 100005
     #else
 		// #define mx 1000005
@@ -46,9 +46,9 @@ int main(int argc, char const *argv[])
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
 	ll n,m,p,q,t,l;
-	ll A[mx];
+	string A[2];
 	
-	memset(A,-1,sizeof(A));
+	// memset(A,-1,sizeof(A));
 	
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
@@ -60,10 +60,27 @@ int main(int argc, char const *argv[])
 		r=0;
 	
 		cin>>n;
-		rep(i,0,n)	cin>>A[i];
-		sort(A,A+n);
-	
-		cout<<r<<"\n";	
+		rep(i,0,2)	cin>>A[i];
+		j=0;
+		rep(i,0,n){
+			if (A[j%2][i]=='1'||A[j%2][i]=='2')
+			{
+				continue;
+			}else{
+				if(A[(j+1)%2][i]=='1'||A[(j+1)%2][i]=='2'){
+					f=1;
+					break;
+				}
+				j++;
+			}
+		}
+		if (f==0&&j%2==1)
+		{
+			cout<<"YES\n";
+		}else{
+			cout<<"NO\n";
+		}
+		// cout<<r<<"\n";	
 	}
 
 	return 0;
