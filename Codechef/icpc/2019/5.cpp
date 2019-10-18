@@ -45,9 +45,10 @@ int main(int argc, char const *argv[])
 	fastIO
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
-	ll n,m,p,q,t,l,s;
+	ll n,m,p,q,t,l;
 	ll A[mx];
-	std::vector<ll> V;
+	
+	memset(A,-1,sizeof(A));
 	
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
@@ -58,52 +59,11 @@ int main(int argc, char const *argv[])
 		f=0;
 		r=0;
 	
-		cin>>n>>k;
-		s=0;
-		x=0;
-		rep(i,0,n){
-			cin>>a;
-			if (a<=k)
-			{
-				r+=a;
-			}else{
-				r+=k;
-				b = a-k;
-				V.pb(b);
-				s+=b;
-				x = max(x,b);
-			}
-		}	
-		sort(V.begin(), V.end());
-		s-=x;
-		p = V.size();
-		if (p <= 1)
-		{
-			r+=x;
-		}
-		else
-		{
-			y = x;
-			x = V[p-2];
-			q=0;
-			// cout<<s<<" ";
-			if (s%2!=0)
-			{
-				s--;
-				q++;
-				x--;
-			}
-			// cout<<x<<" ";
-			s -= x;
-			if (s<=x)
-			{
-				q+=x-s;
-			}
-			// cout<<q<<" ";
-			r+=y-q;
+		cin>>n;
+		rep(i,0,n)	cin>>A[i];
+		sort(A,A+n);
 	
-		}
-			cout<<r<<"\n";	
+		cout<<r<<"\n";	
 	}
 
 	return 0;

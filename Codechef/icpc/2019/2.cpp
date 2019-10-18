@@ -31,12 +31,48 @@ ld pi=2.0*acos(0.0);
 mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
 ll N;
+set<char> L;
+
+char st[1000005];
+std::vector<ll> V[20];
+
+set<ll> K,J;
+ll il;
+
+ll fun(ll idx, ll km){
+	if (idx == N)
+	{
+		return N;
+	}
+	if (L.count(st[idx])==1)
+	{
+		fun(idx+1,1);
+	}
+	if (km==0)
+	{
+		rep(auto I : V[st[idx]-'a']){
+			K.insert(I);
+		}
+		fun(idx+1,1);
+	}else{
+		rep(auto I : V[st[idx]-'a']){
+			if(K.count(I)==1)
+				J.insert(I);
+		}
+		K = J;
+		if (K.size()==0)
+		{
+			rep()
+		}
+		fun(idx+1,1);
+	}
+}
 
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
-		// freopen("../../../input","r",stdin);
-		// freopen("../../../output","w",stdout);
+		freopen("../../../input","r",stdin);
+		freopen("../../../output","w",stdout);
     	// #define mx 100005
     #else
 		// #define mx 1000005
@@ -45,9 +81,11 @@ int main(int argc, char const *argv[])
 	fastIO
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
-	ll n,m,p,q,t,l,s;
+	ll n,m,p,q,t,l;
 	ll A[mx];
-	std::vector<ll> V;
+	string X,Y,Z;
+	memset(A,-1,sizeof(A));
+	
 	
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
@@ -55,55 +93,26 @@ int main(int argc, char const *argv[])
 	
 	while(t--){
 	
+		rep(i,0,20)	V[i].clear();
+
 		f=0;
 		r=0;
 	
 		cin>>n>>k;
-		s=0;
-		x=0;
+		cin>>st;
+		N=n;
 		rep(i,0,n){
-			cin>>a;
-			if (a<=k)
-			{
-				r+=a;
-			}else{
-				r+=k;
-				b = a-k;
-				V.pb(b);
-				s+=b;
-				x = max(x,b);
+			cin>>Y;
+			for(auto P:Y){
+				V[P-'a'].pb(i);
 			}
-		}	
-		sort(V.begin(), V.end());
-		s-=x;
-		p = V.size();
-		if (p <= 1)
-		{
-			r+=x;
 		}
-		else
-		{
-			y = x;
-			x = V[p-2];
-			q=0;
-			// cout<<s<<" ";
-			if (s%2!=0)
-			{
-				s--;
-				q++;
-				x--;
-			}
-			// cout<<x<<" ";
-			s -= x;
-			if (s<=x)
-			{
-				q+=x-s;
-			}
-			// cout<<q<<" ";
-			r+=y-q;
-	
+		x = 0;
+		while(x<n){
+			x = fun(x,0);
 		}
-			cout<<r<<"\n";	
+		
+		cout<<"\n";	
 	}
 
 	return 0;

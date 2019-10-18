@@ -35,8 +35,8 @@ ll N;
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
-		// freopen("../../../input","r",stdin);
-		// freopen("../../../output","w",stdout);
+		freopen("../../../input","r",stdin);
+		freopen("../../../output","w",stdout);
     	// #define mx 100005
     #else
 		// #define mx 1000005
@@ -45,65 +45,57 @@ int main(int argc, char const *argv[])
 	fastIO
 	
 	ll a,b,c,d,i,j,k,f,r,x,y,z;
-	ll n,m,p,q,t,l,s;
-	ll A[mx];
-	std::vector<ll> V;
+	ll n,m,p,q,t,l;
+	// ll A[mx];
+	std::map<string, ll> M1;
+	std::map<string, ll> M2;
+	string X,Y,Z;
 	
 	a=b=c=d=i=j=k=f=r=x=y=z=n=m=p=q=t=l=0;
 	
 	cin>>t;
 	
 	while(t--){
+		M1.clear();
+		M2.clear();
 	
 		f=0;
 		r=0;
 	
-		cin>>n>>k;
-		s=0;
-		x=0;
+		cin>>n;
 		rep(i,0,n){
+			cin>>X;
 			cin>>a;
-			if (a<=k)
+			if (a==0)
 			{
-				r+=a;
+				M1[X]++;
 			}else{
-				r+=k;
-				b = a-k;
-				V.pb(b);
-				s+=b;
-				x = max(x,b);
+				M2[X]++;
+			}
+		}
+		r =0 ;
+		for(auto P : M1){
+			if (M2.find(P.f) == M2.end())
+			{
+				r += P.s;
+			}else{
+				if (P.s>=M2[P.f])
+				{
+					r += P.s;
+				}else{
+					r += M2[P.f];
+				}
+				M2[P.f] = 0;
 			}
 		}	
-		sort(V.begin(), V.end());
-		s-=x;
-		p = V.size();
-		if (p <= 1)
-		{
-			r+=x;
-		}
-		else
-		{
-			y = x;
-			x = V[p-2];
-			q=0;
-			// cout<<s<<" ";
-			if (s%2!=0)
-			{
-				s--;
-				q++;
-				x--;
-			}
-			// cout<<x<<" ";
-			s -= x;
-			if (s<=x)
-			{
-				q+=x-s;
-			}
-			// cout<<q<<" ";
-			r+=y-q;
+		for(auto P : M2){
+				r += P.s;
+		}	
+
+
+		// sort(A,A+n);
 	
-		}
-			cout<<r<<"\n";	
+		cout<<r<<"\n";	
 	}
 
 	return 0;
