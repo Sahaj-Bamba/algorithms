@@ -27,33 +27,6 @@ typedef pair<ll,ll> pl;
 
 mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
-ll mod_inv(ll a){
-    ll p=mod-2;
-    ll ans = 1;
-    while(p>0){
-        if(p%2==1){
-            ans*=a;
-            ans%=mod;
-        }
-        a*=a;
-        a%=mod;
-        p/=2;
-    }
-    return ans;
-}
-ll exp_mul(ll b,ll p){
-    ll ans = 1;
-    while(p>0){
-        if(p%2!=0){
-            ans*=b;
-            ans%=mod;
-        }
-        b*=b;
-        b%=mod;
-        p/=2;
-    }
-    return ans;
-}
 int main(int argc, char const *argv[])
 {
 	#ifndef ONLINE_JUDGE
@@ -65,34 +38,18 @@ int main(int argc, char const *argv[])
 	ll n,m,p,q,t;
 	ll A[mx];
 	memset(A,-1,sizeof(A));
-
 	cin>>t;
 	while(t--){
-		f=0;
-		r=0;
-		cin>>a>>b;
-		if (a==b)
-		{
-			r=1;
-		}else{
-			c=a-b;
-			x=(exp_mul(3,c-2)*((c*(c-1))/2)%mod)%mod;
-			//x
-			while(b!=0){
-				x*=a;
-				x%=mod;
-				x*=mod_inv(b);
-				x%=mod;
-				b--;
-				a--;
-			}
-			x+=(exp_mul(2,c));
-			x%=mod;
-		    r=x;
+		r=f=0;
+		cin>>n;
+		rep(i,0,n){
+			cin>>A[i];
 		}
-		cout<<r<<"\n";	
+		sort(A,A+n);
+
+		cout<<r<<"\n";
+
 	}
 
-//	cout<<r<<"\n";
 	return 0;
 }
