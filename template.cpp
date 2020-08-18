@@ -1,78 +1,58 @@
 #include <bits/stdc++.h>
 #define fastIO ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define mod 1000000007
-#define mx 1000005
+// #define mx 1000005
+#define INF LLONG_MAX
+
+#define debug(a) cout<<"\n----------------------"<<a<<"-------------------------"
+
+#define mem(a,val) memset(a,val,sizeof(a))
+#define rep(i,j,n) for(i=j;i<n;i++)
+#define invrep(i,j,n) for (i = j-1; i >=n ; --i)
+
+#define pb push_back
+#define mp make_pair
+#define f first
+#define s second
+
+#define prec(n) fixed<<setprecision(n)
+#define bit(n, i) (((n) >> (i)) & 1)
+#define bitcount(n) __builtin_popcountll(n)
+#define bin_long stoi(to_string(x), nullptr, 2);
+
 using namespace std;
+typedef long double ld;
+ld pi=2.0*acos(0.0);
+
 typedef long long int ll;
+typedef pair<ll,ll> pl;
 
-vector<int> A[2005];
-int mxY=0;		
-int minY=2000000;
-int B[2005]={0};
-int fun(int time,int y){
-
-	int a;
-
-	if(time<=0){
-		return 0;
-	}
-	if (y>mxY)
-	{
-		return 0;
-	}
-	a=fun(time-1,y+1);
-	for (int i = 0; i < A[y].size(); ++i)
-	{
-		if(time>A[y][i]*2){
-			a = max(fun(time-(A[y][i]*2+1),y+1)+i+1,a);
-		}else if(time>=A[y][i]){
-			a = max(i+1,a);
-		}
-		else{
-			return a;
-		}
-	}
-	return a;
-}
+mt19937 rng32(chrono::steady_clock::now().time_since_epoch().count());
 
 int main(int argc, char const *argv[])
 {
+	#ifndef ONLINE_JUDGE
+		#define mx 1005
+	#else
+		#define mx 1000005
+    #endif
 	fastIO
-	ll b,c,f,i,j,k,r,t,n,x,y,z;
-	int a;
-	//ll A[mx];
+	ll a,b,c,i,j,k,f,r,x,y,z;
+	ll n,m,p,q,t;
+	ll A[mx];
+	memset(A,-1,sizeof(A));
 	cin>>t;
 	while(t--){
-		
-		for (int i = 0; i < 2005; ++i)
-		{
-			B[i]=0;
+		r=f=0;
+		cin>>n;
+		rep(i,0,n){
+			cin>>A[i];
 		}
+		sort(A,A+n);
 
-		for (int i = 0; i < 2001; ++i)
-		{
-			A[i].clear();
-		}
-		r=0;
-		cin>>n>>k;
-		for (int i = 0; i < n; ++i)
-		{
-			cin>>a>>b>>c;
-			A[a].push_back(max(b,c));
-			mxY = max(mxY,a);
-			minY = min(minY,a);
-		}
-		for (int i = 0; i < 2001; ++i)
-		{
-			if (A[i].empty())
-			{
-				continue;
-			}
-			sort(A[i].begin(),A[i].end());
-		}
-		
+		cout<<r<<"\n";
 
-		cout<<fun(k-minY,minY)<<"\n";
 	}
+
 	return 0;
 }
