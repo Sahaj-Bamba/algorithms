@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+#define ll long long int 
+#define mod 1000000007
+using namespace std;
+ll modexp(ll x,ll n)
+{
+	ll result=1;
+	
+	while(n>0)
+	{
+		if(n%2==1)
+		result=((result%mod)*(x%mod))%mod;
+		
+		n=n/2;
+		x=((x%mod)*(x%mod))%mod;
+	}
+	return result;
+}
+ll gcd(ll a, ll b)
+{  
+    if (b == 0)
+        return a;
+        
+    return gcd(b, a % b); 
+}
+ll cal(ll p1,ll p2,ll p3)
+{
+	/*
+	ll f=modexp(6,mod-2);
+	ll total = p1+p2+p3-3;
+	ll res= ((total%mod)*((total-1)%mod)*((total-2)%mod)*(f%mod))%mod;
+	ll res1 = (  (((p1%mod)*((p1-1)%mod)*((p1-2)%mod)*(f%mod))%mod)+(((p2%mod)*((p2-1)%mod)*((p2-2)%mod)*(f%mod))%mod)
+	       +(((p3%mod)*((p3-1)%mod)*((p3-2)%mod)*(f%mod))%mod) )%mod;
+            return (res-res1)%mod;
+            */
+            
+          ll a,b,c;
+          a=((p1%mod*p2%mod)%mod*p3%mod)%mod;
+          b=((p1+2)%mod*(p1+1)%mod)%mod/2;
+          b+=((p2+2)%mod*(p2+1)%mod)%mod/2;
+          b=b%mod;
+          b+=((p3+2)%mod*(p3+1)%mod)%mod/2;
+          b=b%mod;
+          b-=2;
+          if(b<0)
+          b+=mod;
+          return (a+b)%mod;
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{           ll x1,x2,x3,x4,y1,y2,y3,y4;
+		cin>>x1>>y1>>x2>>y2>>x3>>y3;
+		ll p1=gcd(abs(x2-x1),abs(y2-y1))-1;
+		ll p2=gcd(abs(x3-x1),abs(y3-y1))-1;
+		ll p3=gcd(abs(x3-x2),abs(y3-y2))-1;
+		//cout<<p1<<p2<<p3<<endl;
+		ll res = cal(p1,p2,p3);
+		cout<<res<<endl;
+	}
+	
+	return 0;
+}

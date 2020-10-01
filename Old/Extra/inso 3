@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+#define pb push_back
+#define mp make_pair
+#define pii pair< int, int >
+#define pll pair< long long, long long >
+#define sci(n) scanf("%d",&n)
+#define sci2(n,m) scanf("%d %d",&n,&m)
+#define sci3(x,y,z) scanf("%d %d %d",&x,&y,&z)
+#define scll(n) scanf("%lld",&n)
+#define scll2(n,m) scanf("%lld, %lld",&n, &m)
+#define scll3(n,m,p) scanf("%lld %lld %lld",&n, &m, &p)
+#define MAX 1001
+#define MOD 1000000007
+#define INF 1000000000000000001
+#define pi 3.1415926
+#define pri(x) printf("%d\n",x)
+#define prll(x) printf("%lld\n",x)
+using namespace std;
+typedef long long ll;
+
+int main() {
+	int t,n,r,p,q,r,f,i,j,k,a,b,c,x,y,z;
+	int A[1000005];
+	sci(n,q);
+	int R[1000005];
+	for(i=0;i<n;i++)
+	sci(A[i]);
+	c=0;
+	while(q--) {
+		sci2(a,b);
+		x=(a+c)%n;
+		y=(b+c)%n;
+		if(x>y){
+			z=x;
+			x=y;
+			y=z;
+		}
+		r=1;
+		a=A[x];
+		for(i=x+1;i<=y;i++){
+			if(A[i]>a){
+				a=A[i];
+				r++;
+			}
+		}
+		pri(r);
+		c=r%n;
+	}
+	return 0;
+}
