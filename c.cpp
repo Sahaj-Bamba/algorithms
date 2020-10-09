@@ -9,6 +9,7 @@ void minAbsSumPair(int arr[], int arr_size)
 	int l, r, min_sum, sum, min_l, min_r; 
 	
 	/* Array should have at least 
+	
 	two elements*/
 	if(arr_size < 2) 
 	{ 

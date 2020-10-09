@@ -52,6 +52,7 @@ int main(int argc, char const *argv[])
 		sort(A.begin(),A.end());
 		sort(B.begin(),B.end());
 
+
 		while(m--){
 			cin>>a>>b;
 			x = a - A[0].f +1;
